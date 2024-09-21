@@ -14,6 +14,7 @@ export const createUser = async (userAuth) => {
     if (!userSnapshot.exists()) {
       const { displayName, email } = userAuth
       const createdAt = new Date()
+
       try {
         await setDoc(userDocref, {
           displayName,
@@ -27,4 +28,4 @@ export const createUser = async (userAuth) => {
     }
   
     return userDocref;
-  }
+}
