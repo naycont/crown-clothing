@@ -3,7 +3,6 @@ import FormInput from '../globals/form-input/form-input.component'
 import ActionButton from '../globals/action-button/action-button.component'
 import { signInWithGooglePopup, auth } from '../../utils/firebase/firebase.utils'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { createUser } from '../../services/users'
 import './sign-in.styles.scss'
 
 const defaultFormFields = {
@@ -15,6 +14,7 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields)
     const { email, password } = formFields
 
+
     const handleInputChange = (event)  => {
         const { name, value } = event.target
         setFormFields({ ...formFields, [name]: value })
@@ -22,10 +22,9 @@ const SignInForm = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+        
         try {
-           const response = await signInWithEmailAndPassword(auth, email, password)
-           console.log(response)
+           await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
             let errorMessage = '';
             switch (error.code) {
@@ -46,8 +45,7 @@ const SignInForm = () => {
 
     const signInWithGoogle = async (event) => {
         event.preventDefault();
-        const { user } = await signInWithGooglePopup()
-        await createUser(user)
+        await signInWithGooglePopup()
     }
 
     return (
@@ -82,7 +80,9 @@ const SignInForm = () => {
                 />
 
                 <div className='action-buttons-container'>
-                    <ActionButton type='submit'>
+                    <ActionButton
+                        type='submit'
+                    >
                         Sign in
                     </ActionButton>
 
