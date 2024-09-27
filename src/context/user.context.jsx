@@ -14,6 +14,8 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChangedListener(async (user) => {
+            console.log('onAuthStateChangedListener')
+            console.log(user)
             if (user) {
                 await createUser(user)
             }
