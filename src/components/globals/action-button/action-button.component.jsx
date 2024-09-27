@@ -5,7 +5,7 @@ const BUTTON_TYPE_CLASSES = {
     'google-sign-in': 'google-sign-in'
 }
 
-const ActionButton = ({ children, buttonType, buttonProps }) => {
+const ActionButton = ({ children, buttonType, ...buttonProps }) => {
     const className = BUTTON_TYPE_CLASSES[buttonType] ?  BUTTON_TYPE_CLASSES[buttonType] : '';
     return (
         <button

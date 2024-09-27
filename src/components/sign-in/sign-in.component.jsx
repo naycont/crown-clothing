@@ -21,7 +21,6 @@ const SignInForm = () => {
     }
 
     const handleFormSubmit = async (event) => {
-        console.log('handleFormSubmit')
         event.preventDefault();
 
         try {
@@ -45,8 +44,8 @@ const SignInForm = () => {
         }
     }
 
-    const signInWithGoogle = async () => {
-        console.log('signInWithGoogle')
+    const signInWithGoogle = async (event) => {
+        event.preventDefault();
         const { user } = await signInWithGooglePopup()
         await createUser(user)
     }
