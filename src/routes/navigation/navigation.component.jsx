@@ -10,7 +10,7 @@ import './navigation.styles.scss'
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext)
-  const { isActive } = useContext(CartContext)
+  const { isCartDropdownActive } = useContext(CartContext)
 
   const signOutHandler = async () => {
     try {
@@ -37,7 +37,7 @@ const Navigation = () => {
               }
               <CartIcon/>
           </div>
-          { isActive && <CartDropdown/> }          
+          { isCartDropdownActive && <CartDropdown/> }          
       </div>
       <Outlet/>
     </Fragment>
