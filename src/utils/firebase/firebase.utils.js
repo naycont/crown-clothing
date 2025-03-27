@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged
 } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import { getFirestore, doc, collection, writeBatch, query, getDocs } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyD_G03G5zf0ht3Btalh1CGKVwQCnUf63VQ",
@@ -30,6 +30,35 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
 
 export const db = getFirestore()
 
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd, field = 'title') => {
+  try {
+    const collectionRef = collection(db, collectionKey)
+    const batch = writeBatch(db)
+
+    objectsToAdd.forEach(object => {
+      console.log(object)
+      const docRef = doc(collectionRef, object[field].toLowerCase())
+      batch.set(docRef, object)
+    })
+
+    await batch.commit()
+
+  } catch (error) {
+    console.error('error')
+    console.error(error)
+  }
+} 
+
+export const getCollectionAndDocuments = async (collectionKey) => {
+    const collectionRef = collection(db, collectionKey)
+    const q = query(collectionRef)
+
+    const querySnapshot = await getDocs(q)
+
+    const categoryMap = querySnapshot.docs.map((docSnapshot) => docSnapshot.data())
+    
+    return categoryMap
+}
 export const signOutUser = async () => await signOut(auth)
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)

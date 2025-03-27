@@ -1,11 +1,10 @@
 import {
-    getFirestore,
     doc,
     getDoc,
     setDoc
 } from 'firebase/firestore'
 
-const db = getFirestore()
+import { db } from '../utils/firebase/firebase.utils'
 
 export const createUser = async (userAuth) => {
     const userDocref = doc(db, 'users', userAuth.uid)
