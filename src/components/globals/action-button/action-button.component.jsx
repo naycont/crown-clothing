@@ -1,19 +1,27 @@
-import './action-button.styles.scss'
+import { BaseButton, GoogleSingInButton, InvertedButton } from './action-button.styles.jsx'
 
-const BUTTON_TYPE_CLASSES = {
+export const BUTTON_TYPE_CLASSES = {
+    base: 'base',
     inverted: 'inverted',
-    'google-sign-in': 'google-sign-in'
+    google: 'google-sign-in'
 }
 
+const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) => (
+    {
+        [BUTTON_TYPE_CLASSES.base]: BaseButton,
+        [BUTTON_TYPE_CLASSES.google]: GoogleSingInButton,
+        [BUTTON_TYPE_CLASSES.inverted]: InvertedButton
+    }[buttonType]    
+)
+
 const ActionButton = ({ children, buttonType, ...buttonProps }) => {
-    const className = BUTTON_TYPE_CLASSES[buttonType] ?  BUTTON_TYPE_CLASSES[buttonType] : '';
+    const CustomButton = getButton(buttonType)
     return (
-        <button
-            className={`button-container ${className}`}
+        <CustomButton
             {...buttonProps}
         >
             {children}
-        </button>
+        </CustomButton>
     )
 }
 
