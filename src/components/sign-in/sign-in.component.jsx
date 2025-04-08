@@ -3,7 +3,7 @@ import FormInput from '../globals/form-input/form-input.component'
 import ActionButton, { BUTTON_TYPE_CLASSES } from '../globals/action-button/action-button.component'
 import { signInWithGooglePopup, auth } from '../../utils/firebase/firebase.utils'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import './sign-in.styles.scss'
+import { SignInContainer, Title, ActionButtonContainer } from './sign-in.styles.jsx'
 
 const defaultFormFields = {
     email: '',
@@ -49,8 +49,8 @@ const SignInForm = () => {
     }
 
     return (
-        <div className='sign-in-container'>
-            <h2>Already have an account?</h2>
+        <SignInContainer>
+            <Title>Already have an account?</Title>
             <span>Sign in with you email and password</span>
             <form onSubmit={handleFormSubmit}>
                 <FormInput
@@ -79,7 +79,7 @@ const SignInForm = () => {
                     }
                 />
 
-                <div className='action-buttons-container'>
+                <ActionButtonContainer>
                     <ActionButton
                         type='submit'
                     >
@@ -93,9 +93,9 @@ const SignInForm = () => {
                     >
                         Google Sign in
                     </ActionButton>
-                </div>
+                </ActionButtonContainer>
             </form>
-        </div>
+        </SignInContainer>
     )
 }
 
