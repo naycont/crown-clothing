@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/cart.context'
-import { CartIconContainer, ShopIcon, ItemCount } from './cart-icon.styles.jsx'
+import { CartIconContainer, ShopIcon, ItemCount } from './cart-icon.styles'
 
 const CartIcon = () => {
     const { isCartDropdownActive, setIsCartDrowdonwActive, cartCount } = useContext(CartContext)
