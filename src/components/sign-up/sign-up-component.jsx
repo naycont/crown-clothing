@@ -3,7 +3,8 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../globals/form-input/form-input.component'
 import ActionButton from '../globals/action-button/action-button.component'
-import './sign-up.styles.scss'
+import { SignUpContainer } from './sign-up.styles'
+
 const defaultFormFields = {
     displayName: '',
     email: '',
@@ -40,13 +41,12 @@ const SignUpForm = () => {
             } else {
                 console.error('error while signing up user with email and password')
                 console.error(error)
-                console.log(error.code)
             }
         }
     }
 
     return (
-        <div className='sign-up-container'>
+        <SignUpContainer>
             <h2>Don't have an account?</h2>
             <span>Sign up with you email and password</span>
             <form onSubmit={handleFormSubmit}>
@@ -105,7 +105,7 @@ const SignUpForm = () => {
 
                 <ActionButton type='submit'>Sign up</ActionButton>
             </form>
-        </div>
+        </SignUpContainer>
     )
 }
 
