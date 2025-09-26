@@ -8,7 +8,7 @@ const DirectoryItem = ({category}) => {
                 imageUrl={imageUrl}
             ></BacgroundImage>
             <Body>
-                <h2>{name}</h2>
+                <h2>{name.toUpperCase()}</h2>
                 <p>Shop now</p>
             </Body>
         </DirectoryItemContainer>
